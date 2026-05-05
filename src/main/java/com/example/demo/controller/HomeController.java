@@ -22,11 +22,7 @@ public class HomeController {
         model.addAttribute("users", users);
         return "index";
     }
-    @PostConstruct
-    public void init() {
-        userRepository.save(new UserEntity(null, "Ali"));
-        userRepository.save(new UserEntity(null, "Sara"));
-    }
+
     @PostMapping("/add")
     public String addUser(@RequestParam String name) {
 
