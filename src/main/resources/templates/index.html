@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+</head>
+<body>
+
+<h1>Liste des utilisateurs</h1>
+
+<h2>Ajouter un utilisateur</h2>
+
+<form action="/add" method="post">
+    <input type="text" name="name" placeholder="Nom" required>
+    <button type="submit">Ajouter</button>
+</form>
+
+<ul>
+    <li th:each="user : ${users}">
+        <span th:text="${user.name}"></span>
+
+        <a th:href="@{/delete/{id}(id=${user.id})}">
+            Supprimer
+        </a>
+        <a th:href="@{/edit/{id}(id=${user.id})}">
+            Modifier
+        </a>
+    </li>
+</ul>
+
+</body>
+</html>

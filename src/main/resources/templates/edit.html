@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifier utilisateur</title>
+</head>
+<body>
+
+<h2>Modifier utilisateur</h2>
+
+<form action="/update" method="post">
+
+    <input type="hidden" name="id" th:value="${user.id}">
+
+    <input type="text" name="name" th:value="${user.name}" required>
+
+    <button type="submit">Enregistrer</button>
+
+</form>
+
+</body>
+</html>
