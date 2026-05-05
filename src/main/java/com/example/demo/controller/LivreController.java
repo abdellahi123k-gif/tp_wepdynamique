@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @ResponseBody
 @RequestMapping("/Patien")
-public class PateinController {
+public class LivreController {
     @GetMapping("/p")
     public String sayHello() {
         return "say hello";
