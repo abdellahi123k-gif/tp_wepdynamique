@@ -1,12 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.Repository.UserRepository;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.example.demo.Entity.UserEntity;
+import com.example.demo.Entity.ProductEntity;
 import java.util.List;
 
 
@@ -18,15 +17,15 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<UserEntity> users = userRepository.findAll();
+        List<ProductEntity> users = userRepository.findAll();
         model.addAttribute("users", users);
         return "index";
     }
 
     @PostMapping("/add")
-    public String addUser(@RequestParam String name) {
+    public String addUser(@RequestParam String name , @RequestParam Double price, @RequestParam String description) {
 
-        userRepository.save(new UserEntity(null, name));
+        userRepository.save(new ProductEntity(null, name, price, description));
 
         return "redirect:/";
     }
@@ -40,7 +39,7 @@ public class HomeController {
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable Long id, Model model) {
 
-        UserEntity user = userRepository.findById(id).orElse(null);
+        ProductEntity user = userRepository.findById(id).orElse(null);
 
         model.addAttribute("user", user);
 
@@ -48,7 +47,7 @@ public class HomeController {
     }
 
     @PostMapping("/update")
-    public String updateUser(UserEntity user) {
+    public String updateUser(ProductEntity user) {
 
         userRepository.save(user);
 
